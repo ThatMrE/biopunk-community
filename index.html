@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BIOPUNK — Build biology in the open</title>
+<style>
+  :root{
+    --bg:#0a0a0a;
+    --bg-2:#111210;
+    --ink:#f2efe6;
+    --muted:#8a8a82;
+    --line:#26261f;
+    --acid:#b4ff00;     /* Community */
+    --yellow:#ffd600;   /* Houses */
+    --pink:#ff6fa8;      /* Labs */
+    --bone:#f2efe6;      /* Capital */
+    --mono:'Courier New',ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:'Helvetica Neue',Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  .mono{font-family:var(--mono);text-transform:uppercase;letter-spacing:.14em;font-size:12px}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{font-family:var(--mono);font-weight:700;letter-spacing:.2em;font-size:16px}
+  .logo b{color:var(--acid)}
+  .navlinks{display:flex;gap:26px}
+  .navlinks a{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);transition:color .2s}
+  .navlinks a:hover{color:var(--ink)}
+  .navcta{border:1px solid var(--acid);color:var(--acid);padding:8px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+  .navcta:hover{background:var(--acid);color:#000}
+  @media(max-width:760px){.navlinks{display:none}}
+
+  /* HERO */
+  header.hero{position:relative;padding:120px 0 96px;border-bottom:1px solid var(--line);overflow:hidden}
+  .grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:46px 46px;opacity:.35;mask-image:radial-gradient(ellipse at 50% 30%,#000 35%,transparent 78%)}
+  .hero .wrap{position:relative}
+  .eyebrow{color:var(--acid);margin-bottom:26px}
+  h1{font-size:clamp(46px,9vw,118px);line-height:.92;letter-spacing:-.02em;font-weight:800;text-transform:uppercase}
+  h1 .stroke{-webkit-text-stroke:2px var(--ink);color:transparent}
+  .lede{max-width:620px;margin:30px 0 38px;font-size:19px;color:#cfcdc2}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--ink)}
+  .btn.solid{background:var(--acid);color:#000;border-color:var(--acid)}
+  .btn.solid:hover{background:#cdff4d}
+  .btn.ghost:hover{background:var(--ink);color:#000}
+  .ticker{margin-top:64px;display:flex;gap:40px;flex-wrap:wrap;color:var(--muted);font-family:var(--mono);font-size:12px;letter-spacing:.1em}
+  .ticker b{color:var(--ink)}
+
+  /* MANIFESTO */
+  section{padding:92px 0;border-bottom:1px solid var(--line)}
+  .sec-label{display:flex;align-items:center;gap:14px;color:var(--muted);margin-bottom:40px}
+  .sec-label::before{content:"";width:40px;height:1px;background:var(--acid)}
+  .manifesto p{font-size:clamp(24px,3.6vw,40px);line-height:1.28;font-weight:600;letter-spacing:-.01em;max-width:980px}
+  .manifesto p span{color:var(--acid)}
+  .manifesto .small{font-size:16px;font-weight:400;color:var(--muted);max-width:680px;margin-top:30px;line-height:1.7}
+
+  /* PILLARS */
+  .pillars-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:48px}
+  .pillars-head h2{font-size:clamp(30px,5vw,56px);text-transform:uppercase;letter-spacing:-.01em;line-height:1}
+  .pillars-head p{color:var(--muted);max-width:380px}
+  .pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  @media(max-width:780px){.pgrid{grid-template-columns:1fr}}
+  .pillar{position:relative;border:1px solid var(--line);background:var(--bg-2);padding:34px 30px 30px;min-height:300px;display:flex;flex-direction:column;transition:transform .2s,border-color .2s}
+  .pillar:hover{transform:translateY(-4px)}
+  .pillar .num{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.2em}
+  .pillar h3{font-size:34px;text-transform:uppercase;margin:14px 0 4px;letter-spacing:-.01em}
+  .pillar .dom{font-family:var(--mono);font-size:12px;letter-spacing:.1em;margin-bottom:18px}
+  .pillar p{color:#bdbcb2;font-size:15px;flex:1}
+  .pillar .go{margin-top:22px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px}
+  .pillar .bar{position:absolute;left:0;top:0;width:4px;height:100%}
+  .pillar.community{--c:var(--acid)} .pillar.houses{--c:var(--yellow)}
+  .pillar.labs{--c:var(--pink)} .pillar.capital{--c:var(--bone)}
+  .pillar .bar{background:var(--c)} .pillar .num,.pillar .dom,.pillar .go{color:var(--c)}
+  .pillar:hover{border-color:var(--c)}
+  .pillar .go .arr{transition:transform .2s}
+  .pillar:hover .go .arr{transform:translateX(5px)}
+  .tag{position:absolute;top:30px;right:28px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--muted);border:1px solid var(--line);padding:4px 8px}
+
+  /* HOUSES */
+  .houses-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  @media(max-width:900px){.houses-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.houses-grid{grid-template-columns:1fr}}
+  .house{background:var(--bg);padding:26px 22px;min-height:150px;transition:background .2s}
+  .house:hover{background:var(--bg-2)}
+  .house .v{font-family:var(--mono);font-size:11px;color:var(--yellow);letter-spacing:.14em;text-transform:uppercase}
+  .house .city{font-size:21px;margin:10px 0 6px;font-weight:700}
+  .house .note{font-size:13px;color:var(--muted)}
+
+  /* HOW */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:780px){.steps{grid-template-columns:1fr}}
+  .step{border-top:2px solid var(--acid);padding-top:20px}
+  .step .n{font-family:var(--mono);color:var(--acid);font-size:13px;letter-spacing:.2em}
+  .step h4{font-size:22px;margin:12px 0 8px;text-transform:uppercase}
+  .step p{color:var(--muted);font-size:15px}
+
+  /* CTA */
+  .cta-band{background:var(--acid);color:#000;border:none}
+  .cta-band .wrap{display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap}
+  .cta-band h2{font-size:clamp(30px,5vw,58px);text-transform:uppercase;letter-spacing:-.02em;line-height:.95}
+  .cta-band .btn{border-color:#000;color:#000}
+  .cta-band .btn:hover{background:#000;color:var(--acid)}
+
+  /* FOOTER */
+  footer{padding:64px 0 48px;border:none}
+  .fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px}
+  @media(max-width:780px){.fgrid{grid-template-columns:1fr 1fr}}
+  footer .logo{font-size:22px;margin-bottom:14px}
+  footer p{color:var(--muted);font-size:14px;max-width:300px}
+  .fcol h5{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin-bottom:16px}
+  .fcol a{display:block;color:#bdbcb2;font-size:14px;margin-bottom:10px}
+  .fcol a:hover{color:var(--acid)}
+  .fbar{margin-top:50px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:.12em}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">BIO<b>PUNK</b></a>
+    <div class="navlinks">
+      <a href="#movement">Movement</a>
+      <a href="#pillars">Pillars</a>
+      <a href="#houses">Houses</a>
+      <a href="#how">How it works</a>
+    </div>
+    <a class="navcta" href="#join">Join the movement</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="grid-bg"></div>
+  <div class="wrap">
+    <div class="eyebrow mono">// The open biotech movement</div>
+    <h1>Build biology<br><span class="stroke">in the open.</span></h1>
+    <p class="lede">Biopunk is a global community of scientist-founders building the future of biotech from shared houses and labs — backed by capital from day one. People, place, science, and money, in one stack.</p>
+    <div class="hero-cta">
+      <a class="btn solid" href="#join">Get involved →</a>
+      <a class="btn ghost" href="#pillars">Explore the pillars</a>
+    </div>
+    <div class="ticker">
+      <span><b>7</b> houses worldwide</span>
+      <span><b>20+</b> founders in SF</span>
+      <span><b>$10K</b> first check</span>
+      <span><b>BSL-2</b> wet labs</span>
+    </div>
+  </div>
+</header>
+
+<!-- MOVEMENT / MANIFESTO -->
+<section id="movement" class="manifesto">
+  <div class="wrap">
+    <div class="sec-label mono">Community = the movement</div>
+    <p>The best biotech founders are <span>hidden in labs and universities</span> — invisible to capital until it's almost too late. Biopunk finds them earlier, gives them <span>a house to live in</span>, <span>a lab to build in</span>, and <span>a check to start with</span>.</p>
+    <p class="small">We're not an accelerator with a Slack channel. We're a movement: a real-world network of co-living houses, shared wet labs, grants, office hours, and Tuesday dinners — wired together by a fund that owns the cap table early and backs people, not just decks. Community is the connective tissue across everything below.</p>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section id="pillars">
+  <div class="wrap">
+    <div class="pillars-head">
+      <h2>Four pillars,<br>one organism</h2>
+      <p>Each pillar lives at its own home on the web. The community is the membrane that holds them together.</p>
+    </div>
+    <div class="pgrid">
+
+      <a class="pillar community" href="#movement">
+        <div class="bar"></div>
+        <span class="tag">You are here</span>
+        <div class="num">01 / Community</div>
+        <h3>Community</h3>
+        <div class="dom">biopunk.community</div>
+        <p>The movement and the people in it. Grants, office hours, dinners, Field Notes, and the network that connects every house, lab, and founder in the Biopunk world.</p>
+        <span class="go">The movement <span class="arr">→</span></span>
+      </a>
+
+      <a class="pillar houses" href="https://biopunk.house" target="_blank" rel="noopener">
+        <div class="bar"></div>
+        <div class="num">02 / Houses</div>
+        <h3>Houses</h3>
+        <div class="dom">biopunk.house</div>
+        <p>Co-living, co-working homes for scientist-founders. 12–15 builders per cohort, living and working side by side for a 3–4 month residency in cities chosen for their science.</p>
+        <span class="go">Visit biopunk.house <span class="arr">→</span></span>
+      </a>
+
+      <a class="pillar labs" href="https://biopunklab.com" target="_blank" rel="noopener">
+        <div class="bar"></div>
+        <div class="num">03 / Labs</div>
+        <h3>Labs</h3>
+        <div class="dom">biopunklab.com</div>
+        <p>Shared BSL-2 wet-lab infrastructure so founders can run real experiments on day one — no million-dollar setup, no waiting for a university bench. The science layer of the stack.</p>
+        <span class="go">Visit biopunklab.com <span class="arr">→</span></span>
+      </a>
+
+      <a class="pillar capital" href="https://biopunkvc.com" target="_blank" rel="noopener">
+        <div class="bar"></div>
+        <div class="num">04 / Capital</div>
+        <h3>Capital</h3>
+        <div class="dom">biopunkvc.com</div>
+        <p>Biopunk VC — a $25M pre-seed residency fund. A founder-friendly $10K first check, aggressive follow-on for the best, and pre-incorporation access to the people building what's next.</p>
+        <span class="go">Visit biopunkvc.com <span class="arr">→</span></span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOUSES -->
+<section id="houses">
+  <div class="wrap">
+    <div class="sec-label mono">7 houses · vertical by design</div>
+    <div class="pillars-head" style="margin-bottom:36px">
+      <h2 style="color:var(--yellow)">A global lab,<br>distributed</h2>
+      <p>Each house specializes in a vertical and sits where that science is strongest — talent, regulation, and infrastructure aligned.</p>
+    </div>
+    <div class="houses-grid">
+      <div class="house"><div class="v">Cell Therapy</div><div class="city">Kobe</div><div class="note">Japan · near KBIC</div></div>
+      <div class="house"><div class="v">Clinical Trials</div><div class="city">Australia</div><div class="note">43.5% R&D incentive</div></div>
+      <div class="house"><div class="v">Oncology</div><div class="city">New York</div><div class="note">MSK · Columbia KOLs</div></div>
+      <div class="house"><div class="v">Tools Dev</div><div class="city">Boston</div><div class="note">MIT · Harvard · Flagship</div></div>
+      <div class="house"><div class="v">Industrial Bio</div><div class="city">Mexico</div><div class="note">Nearshore scale-up</div></div>
+      <div class="house"><div class="v">Pharma Mfg</div><div class="city">Puerto Rico</div><div class="note">Act 60 · pharma base</div></div>
+      <div class="house"><div class="v">Biosecurity</div><div class="city">United Kingdom</div><div class="note">Wellcome · CEPI</div></div>
+      <div class="house" style="background:var(--bg-2)"><div class="v" style="color:var(--acid)">Live now</div><div class="city">San Francisco</div><div class="note">Frontier Tower · 20+ founders</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-label mono">How the stack works</div>
+    <div class="steps">
+      <div class="step">
+        <div class="n">01</div>
+        <h4>Move in</h4>
+        <p>Join a house. Live and build alongside a cohort of scientist-founders working on the same vertical, with mentors and KOLs on tap.</p>
+      </div>
+      <div class="step">
+        <div class="n">02</div>
+        <h4>Build in the lab</h4>
+        <p>Run real experiments in a shared BSL-2 wet lab from week one. Hit milestones: raise $100K–1M and file IP within three months.</p>
+      </div>
+      <div class="step">
+        <div class="n">03</div>
+        <h4>Get backed</h4>
+        <p>A $10K uncapped SAFE on entry, with aggressive follow-on of up to $100K for the top of each cohort. Capital that compounds with conviction.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="join" class="cta-band">
+  <div class="wrap">
+    <h2>Come build<br>biology with us.</h2>
+    <div class="hero-cta">
+      <a class="btn" href="https://biopunk.house" target="_blank" rel="noopener">Apply to a house</a>
+      <a class="btn" href="https://biopunkvc.com" target="_blank" rel="noopener">For investors</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="logo">BIO<b style="color:var(--acid)">PUNK</b></div>
+        <p>An open biotech movement — houses, labs, and capital for the scientist-founders building what's next.</p>
+      </div>
+      <div class="fcol">
+        <h5>Pillars</h5>
+        <a href="#movement">Community</a>
+        <a href="https://biopunk.house" target="_blank" rel="noopener">Houses ↗</a>
+        <a href="https://biopunklab.com" target="_blank" rel="noopener">Labs ↗</a>
+        <a href="https://biopunkvc.com" target="_blank" rel="noopener">Capital ↗</a>
+      </div>
+      <div class="fcol">
+        <h5>Programs</h5>
+        <a href="#houses">Residencies</a>
+        <a href="#movement">Primordia Grants</a>
+        <a href="#movement">Office hours</a>
+        <a href="#movement">Field Notes</a>
+      </div>
+      <div class="fcol">
+        <h5>Connect</h5>
+        <a href="mailto:hello@biopunklab.com">hello@biopunklab.com</a>
+        <a href="#join">Join the movement</a>
+        <a href="https://biopunkvc.com" target="_blank" rel="noopener">Invest</a>
+      </div>
+    </div>
+    <div class="fbar">
+      <span>© 2026 Biopunk Community</span>
+      <span>Build biology in the open</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
