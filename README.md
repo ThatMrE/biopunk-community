@@ -1,5 +1,7 @@
 # Biopunk Community
 
-Landing page for **biopunk.community** — the overarching brand hub linking the Biopunk movement across Houses (biopunk.house), Labs (biopunklab.com), and Capital (biopunkvc.com).
+Landing page for **biopunk.community** — the hub for the whole Biopunk movement.
+
+It links the four pillars (Community · [biopunk.house](https://biopunk.house) · [biopunklab.com](https://biopunklab.com) · [biopunkvc.com](https://biopunkvc.com)) and the wider ecosystem of labs, programs, and projects — Cellsius, Crab Lab, Primordia Grants, the Biohackathon, the Biological Frontier Foundation, Temple Lab, and Fathomm — each with a brief description and a link out, plus a reference to the [Global Biolab Atlas](https://global-biolab-atlas.netlify.app/).
 
 Single self-contained `index.html`. Deployable to GitHub Pages, Netlify, Vercel, or any static host.

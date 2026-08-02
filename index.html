@@ -4,6 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>BIOPUNK — Build biology in the open</title>
+<meta name="description" content="biopunk.community is the hub for the whole Biopunk movement — houses, labs, capital, grants, hackathons and open hardware. One home linking Biopunk Lab, Biopunk House, Cellsius, Primordia Grants, the Biohackathon, Crab Lab, the Biological Frontier Foundation, Temple Lab and more." />
+<meta property="og:title" content="BIOPUNK — Build biology in the open" />
+<meta property="og:description" content="The hub for everything biopunk — the open biotech movement of houses, labs, capital, and community projects." />
+<meta property="og:type" content="website" />
 <style>
   :root{
     --bg:#0a0a0a;
@@ -44,7 +48,7 @@
   .eyebrow{color:var(--acid);margin-bottom:26px}
   h1{font-size:clamp(46px,9vw,118px);line-height:.92;letter-spacing:-.02em;font-weight:800;text-transform:uppercase}
   h1 .stroke{-webkit-text-stroke:2px var(--ink);color:transparent}
-  .lede{max-width:620px;margin:30px 0 38px;font-size:19px;color:#cfcdc2}
+  .lede{max-width:640px;margin:30px 0 38px;font-size:19px;color:#cfcdc2}
   .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
   .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--ink)}
   .btn.solid{background:var(--acid);color:#000;border-color:var(--acid)}
@@ -83,6 +87,23 @@
   .pillar:hover .go .arr{transform:translateX(5px)}
   .tag{position:absolute;top:30px;right:28px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--muted);border:1px solid var(--line);padding:4px 8px}
 
+  /* ECOSYSTEM */
+  .egrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  @media(max-width:860px){.egrid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.egrid{grid-template-columns:1fr}}
+  .ecard{position:relative;background:var(--bg);padding:30px 26px 26px;min-height:250px;display:flex;flex-direction:column;transition:background .2s}
+  .ecard:hover{background:var(--bg-2)}
+  .ecard .cat{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--c,var(--acid));display:flex;align-items:center;gap:8px}
+  .ecard .cat::before{content:"";width:7px;height:7px;background:currentColor;border-radius:50%}
+  .ecard h3{font-size:24px;text-transform:uppercase;letter-spacing:-.01em;margin:14px 0 4px}
+  .ecard .dom{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);margin-bottom:16px}
+  .ecard p{color:#bdbcb2;font-size:14px;line-height:1.6;flex:1}
+  .ecard .go{margin-top:20px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:8px;transition:color .2s}
+  .ecard:hover .go{color:var(--c,var(--acid))}
+  .ecard .go .arr{transition:transform .2s}
+  .ecard:hover .go .arr{transform:translateX(5px)}
+  .ecard.acid{--c:var(--acid)} .ecard.yellow{--c:var(--yellow)} .ecard.pink{--c:var(--pink)} .ecard.bone{--c:var(--bone)}
+
   /* HOUSES */
   .houses-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
   @media(max-width:900px){.houses-grid{grid-template-columns:repeat(2,1fr)}}
@@ -92,6 +113,19 @@
   .house .v{font-family:var(--mono);font-size:11px;color:var(--yellow);letter-spacing:.14em;text-transform:uppercase}
   .house .city{font-size:21px;margin:10px 0 6px;font-weight:700}
   .house .note{font-size:13px;color:var(--muted)}
+
+  /* ATLAS */
+  .atlas{position:relative;overflow:hidden}
+  .atlas .wrap{position:relative}
+  .atlas-inner{display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap}
+  .atlas-copy{max-width:600px}
+  .atlas-copy h2{font-size:clamp(30px,5vw,52px);text-transform:uppercase;letter-spacing:-.01em;line-height:1;margin-bottom:22px}
+  .atlas-copy p{color:#bdbcb2;font-size:16px;line-height:1.7;margin-bottom:30px}
+  .atlas-map{flex:1;min-width:280px;height:230px;position:relative;border:1px solid var(--line);background:var(--bg-2)}
+  .atlas-map .node{position:absolute;width:8px;height:8px;border-radius:50%;background:var(--acid);box-shadow:0 0 10px var(--acid)}
+  .atlas-map .node.y{background:var(--yellow);box-shadow:0 0 10px var(--yellow)}
+  .atlas-map .node.p{background:var(--pink);box-shadow:0 0 10px var(--pink)}
+  .atlas-map svg{position:absolute;inset:0;width:100%;height:100%}
 
   /* HOW */
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -128,8 +162,8 @@
     <div class="navlinks">
       <a href="#movement">Movement</a>
       <a href="#pillars">Pillars</a>
-      <a href="#houses">Houses</a>
-      <a href="#how">How it works</a>
+      <a href="#ecosystem">Ecosystem</a>
+      <a href="#atlas">Atlas</a>
     </div>
     <a class="navcta" href="#join">Join the movement</a>
   </div>
@@ -140,10 +174,10 @@
   <div class="wrap">
     <div class="eyebrow mono">// The open biotech movement</div>
     <h1>Build biology<br><span class="stroke">in the open.</span></h1>
-    <p class="lede">Biopunk is a global community of scientist-founders building the future of biotech from shared houses and labs — backed by capital from day one. People, place, science, and money, in one stack.</p>
+    <p class="lede">Biopunk is a global community of scientist-founders building the future of biotech from shared houses and labs — backed by capital from day one. This is the front door to all of it: the movement, its pillars, and every project in the network.</p>
     <div class="hero-cta">
-      <a class="btn solid" href="#join">Get involved →</a>
-      <a class="btn ghost" href="#pillars">Explore the pillars</a>
+      <a class="btn solid" href="#ecosystem">Explore the ecosystem →</a>
+      <a class="btn ghost" href="#pillars">The four pillars</a>
     </div>
     <div class="ticker">
       <span><b>7</b> houses worldwide</span>
@@ -159,7 +193,7 @@
   <div class="wrap">
     <div class="sec-label mono">Community = the movement</div>
     <p>The best biotech founders are <span>hidden in labs and universities</span> — invisible to capital until it's almost too late. Biopunk finds them earlier, gives them <span>a house to live in</span>, <span>a lab to build in</span>, and <span>a check to start with</span>.</p>
-    <p class="small">We're not an accelerator with a Slack channel. We're a movement: a real-world network of co-living houses, shared wet labs, grants, office hours, and Tuesday dinners — wired together by a fund that owns the cap table early and backs people, not just decks. Community is the connective tissue across everything below.</p>
+    <p class="small">We're not an accelerator with a Slack channel. We're a movement: a real-world network of co-living houses, shared wet labs, grants, hackathons, office hours, and Tuesday dinners — wired together by a fund that owns the cap table early and backs people, not just decks. Community is the connective tissue across everything below.</p>
   </div>
 </section>
 
@@ -178,7 +212,7 @@
         <div class="num">01 / Community</div>
         <h3>Community</h3>
         <div class="dom">biopunk.community</div>
-        <p>The movement and the people in it. Grants, office hours, dinners, Field Notes, and the network that connects every house, lab, and founder in the Biopunk world.</p>
+        <p>The movement and the people in it. Grants, hackathons, office hours, dinners, and the network that connects every house, lab, and founder in the Biopunk world.</p>
         <span class="go">The movement <span class="arr">→</span></span>
       </a>
 
@@ -196,7 +230,7 @@
         <div class="num">03 / Labs</div>
         <h3>Labs</h3>
         <div class="dom">biopunklab.com</div>
-        <p>Shared BSL-2 wet-lab infrastructure so founders can run real experiments on day one — no million-dollar setup, no waiting for a university bench. The science layer of the stack.</p>
+        <p>The world's largest open-access biolab — shared BSL-2 wet-lab infrastructure so founders can run real experiments on day one. No million-dollar setup, no waiting for a university bench.</p>
         <span class="go">Visit biopunklab.com <span class="arr">→</span></span>
       </a>
 
@@ -207,6 +241,84 @@
         <div class="dom">biopunkvc.com</div>
         <p>Biopunk VC — a $25M pre-seed residency fund. A founder-friendly $10K first check, aggressive follow-on for the best, and pre-incorporation access to the people building what's next.</p>
         <span class="go">Visit biopunkvc.com <span class="arr">→</span></span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ECOSYSTEM -->
+<section id="ecosystem">
+  <div class="wrap">
+    <div class="sec-label mono">The wider network</div>
+    <div class="pillars-head" style="margin-bottom:44px">
+      <h2>The Biopunk<br>ecosystem</h2>
+      <p>Beyond the four pillars, a growing constellation of labs, programs, and projects — each its own thing, all part of the same organism. Follow any link to dive in.</p>
+    </div>
+    <div class="egrid">
+
+      <a class="ecard acid" href="http://cellsius.org/" target="_blank" rel="noopener">
+        <div class="cat">Community Lab</div>
+        <h3>Cellsius</h3>
+        <div class="dom">cellsius.org</div>
+        <p>The SF community bio lab the movement grew from — project-based learning, classes, and open experimentation across synbio, tissue engineering, DNA sequencing, robotics and more.</p>
+        <span class="go">Visit <span class="arr">→</span></span>
+      </a>
+
+      <a class="ecard pink" href="http://crablaboratory.com/" target="_blank" rel="noopener">
+        <div class="cat">Open Hardware</div>
+        <h3>Crab Lab</h3>
+        <div class="dom">crablaboratory.com</div>
+        <p>Open-source, modular shipping-container laboratories built to deploy anywhere. Blueprints and protocols are fully open, so any community can replicate a lab from local materials.</p>
+        <span class="go">Visit <span class="arr">→</span></span>
+      </a>
+
+      <a class="ecard yellow" href="https://primordiagrants.com/" target="_blank" rel="noopener">
+        <div class="cat">Microgrants</div>
+        <h3>Primordia Grants</h3>
+        <div class="dom">primordiagrants.com</div>
+        <p>Fast microgrants — up to $3,000 — for early-stage biology experiments in community labs. No institution or credentials required; grantees share their work in the open.</p>
+        <span class="go">Visit <span class="arr">→</span></span>
+      </a>
+
+      <a class="ecard yellow" href="https://biopunk-hackathon.vercel.app/" target="_blank" rel="noopener">
+        <div class="cat">Events</div>
+        <h3>Biohackathon</h3>
+        <div class="dom">biopunk-hackathon.vercel.app</div>
+        <p>A sprint of rebellious science at the crossroads of synthetic biology, DeSci, and open science. Builders prototype frontier biotech — DIY diagnostics, living art, lab automation — in days.</p>
+        <span class="go">Visit <span class="arr">→</span></span>
+      </a>
+
+      <a class="ecard bone" href="https://biologicalfrontierfoundation.org/" target="_blank" rel="noopener">
+        <div class="cat">Foundation</div>
+        <h3>Biological Frontier Foundation</h3>
+        <div class="dom">biologicalfrontierfoundation.org</div>
+        <p>The nonprofit backbone of the community — advancing open, community-driven biology and supporting the labs, people, and projects working at the frontier of science.</p>
+        <span class="go">Visit <span class="arr">→</span></span>
+      </a>
+
+      <a class="ecard pink" href="https://templelab.org/" target="_blank" rel="noopener">
+        <div class="cat">Analytical</div>
+        <h3>Temple Lab</h3>
+        <div class="dom">templelab.org</div>
+        <p>Analytical chemistry with harm reduction as its central sacrament — HPLC-anchored testing and full certificates of analysis for peptides, supplements, and research groups.</p>
+        <span class="go">Visit <span class="arr">→</span></span>
+      </a>
+
+      <a class="ecard acid" href="https://fathomm.org/" target="_blank" rel="noopener">
+        <div class="cat">Project</div>
+        <h3>Fathomm</h3>
+        <div class="dom">fathomm.org</div>
+        <p>A biopunk community venture exploring the deeper end of biology. Dive in to see what's taking shape.</p>
+        <span class="go">Visit <span class="arr">→</span></span>
+      </a>
+
+      <a class="ecard bone" href="https://biopunk.house" target="_blank" rel="noopener">
+        <div class="cat">Residency</div>
+        <h3>Biopunk House</h3>
+        <div class="dom">biopunk.house</div>
+        <p>The live-in residency for scientist-founders — a home for biologists, hackers, and the wildly curious, with a cutting-edge lab downstairs. DIY, rebellious, deeply collaborative.</p>
+        <span class="go">Visit <span class="arr">→</span></span>
       </a>
 
     </div>
@@ -230,6 +342,35 @@
       <div class="house"><div class="v">Pharma Mfg</div><div class="city">Puerto Rico</div><div class="note">Act 60 · pharma base</div></div>
       <div class="house"><div class="v">Biosecurity</div><div class="city">United Kingdom</div><div class="note">Wellcome · CEPI</div></div>
       <div class="house" style="background:var(--bg-2)"><div class="v" style="color:var(--acid)">Live now</div><div class="city">San Francisco</div><div class="note">Frontier Tower · 20+ founders</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ATLAS -->
+<section id="atlas" class="atlas">
+  <div class="grid-bg" style="mask-image:radial-gradient(ellipse at 70% 50%,#000 30%,transparent 75%)"></div>
+  <div class="wrap">
+    <div class="atlas-inner">
+      <div class="atlas-copy">
+        <div class="sec-label mono" style="margin-bottom:26px">Beyond the community</div>
+        <h2>Find a lab<br>near you</h2>
+        <p>Biopunk is one node in a much bigger movement. The <strong style="color:var(--ink)">Global Biolab Atlas</strong> is a living map of DIYbio, community biotech, and open-science labs worldwide — with activity status for each. Looking for a bench, a community, or collaborators? Start there.</p>
+        <a class="btn ghost" href="https://global-biolab-atlas.netlify.app/" target="_blank" rel="noopener">Open the Global Biolab Atlas →</a>
+      </div>
+      <div class="atlas-map" aria-hidden="true">
+        <svg viewBox="0 0 400 230" preserveAspectRatio="none">
+          <line x1="60" y1="70" x2="150" y2="130" stroke="rgba(180,255,0,.25)" stroke-width="1"/>
+          <line x1="150" y1="130" x2="285" y2="70" stroke="rgba(255,214,0,.25)" stroke-width="1"/>
+          <line x1="285" y1="70" x2="340" y2="160" stroke="rgba(180,255,0,.2)" stroke-width="1"/>
+          <line x1="150" y1="130" x2="205" y2="185" stroke="rgba(255,111,168,.25)" stroke-width="1"/>
+          <line x1="60" y1="70" x2="205" y2="185" stroke="rgba(180,255,0,.12)" stroke-width="1"/>
+        </svg>
+        <span class="node" style="top:66px;left:56px"></span>
+        <span class="node y" style="top:126px;left:146px"></span>
+        <span class="node" style="top:66px;left:281px"></span>
+        <span class="node" style="top:156px;left:336px"></span>
+        <span class="node p" style="top:181px;left:201px"></span>
+      </div>
     </div>
   </div>
 </section>
@@ -264,6 +405,7 @@
     <h2>Come build<br>biology with us.</h2>
     <div class="hero-cta">
       <a class="btn" href="https://biopunk.house" target="_blank" rel="noopener">Apply to a house</a>
+      <a class="btn" href="https://primordiagrants.com/" target="_blank" rel="noopener">Apply for a grant</a>
       <a class="btn" href="https://biopunkvc.com" target="_blank" rel="noopener">For investors</a>
     </div>
   </div>
@@ -285,14 +427,18 @@
         <a href="https://biopunkvc.com" target="_blank" rel="noopener">Capital ↗</a>
       </div>
       <div class="fcol">
-        <h5>Programs</h5>
-        <a href="#houses">Residencies</a>
-        <a href="#movement">Primordia Grants</a>
-        <a href="#movement">Office hours</a>
-        <a href="#movement">Field Notes</a>
+        <h5>Ecosystem</h5>
+        <a href="http://cellsius.org/" target="_blank" rel="noopener">Cellsius ↗</a>
+        <a href="http://crablaboratory.com/" target="_blank" rel="noopener">Crab Lab ↗</a>
+        <a href="https://primordiagrants.com/" target="_blank" rel="noopener">Primordia Grants ↗</a>
+        <a href="https://biopunk-hackathon.vercel.app/" target="_blank" rel="noopener">Biohackathon ↗</a>
+        <a href="https://biologicalfrontierfoundation.org/" target="_blank" rel="noopener">Biological Frontier Foundation ↗</a>
+        <a href="https://templelab.org/" target="_blank" rel="noopener">Temple Lab ↗</a>
+        <a href="https://fathomm.org/" target="_blank" rel="noopener">Fathomm ↗</a>
       </div>
       <div class="fcol">
         <h5>Connect</h5>
+        <a href="https://global-biolab-atlas.netlify.app/" target="_blank" rel="noopener">Global Biolab Atlas ↗</a>
         <a href="mailto:hello@biopunklab.com">hello@biopunklab.com</a>
         <a href="#join">Join the movement</a>
         <a href="https://biopunkvc.com" target="_blank" rel="noopener">Invest</a>
