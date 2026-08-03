@@ -108,12 +108,35 @@
   .atlas-map .node.p{background:var(--pink);box-shadow:0 0 10px var(--pink)}
   .atlas-map svg{position:absolute;inset:0;width:100%;height:100%}
 
-  /* CTA */
-  .cta-band{background:var(--acid);color:#000;border:none}
-  .cta-band .wrap{display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap}
+  /* CTA + JOURNEY */
+  .cta-band{background:var(--acid);color:#000;border:none;text-align:center}
+  .cta-band .wrap{display:block}
   .cta-band h2{font-size:clamp(30px,5vw,58px);text-transform:uppercase;letter-spacing:-.02em;line-height:.95}
-  .cta-band .btn{border-color:#000;color:#000}
-  .cta-band .btn:hover{background:#000;color:var(--acid)}
+  .cta-sub{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(0,0,0,.6);margin-top:18px}
+  .journey{position:relative;max-width:960px;margin:46px auto 0;display:flex;flex-direction:column;gap:32px}
+  .journey-curve{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;overflow:visible}
+  .jstep{position:relative;z-index:1;width:42%;height:96px;display:flex;flex-direction:column;justify-content:center;gap:5px;padding:0 26px;border:2px solid #000;background:rgba(255,255,255,.16);text-align:left;transition:background .2s,transform .2s}
+  .jstep.left{align-self:flex-start}
+  .jstep.right{align-self:flex-end}
+  .jstep::after{content:"";position:absolute;top:50%;transform:translateY(-50%);width:14px;height:14px;border-radius:50%;background:#000;transition:background .2s,box-shadow .2s}
+  .jstep.left::after{right:-8px}
+  .jstep.right::after{left:-8px}
+  .jstep:hover{background:#000;transform:translateY(-2px)}
+  .jstep:hover::after{background:var(--acid);box-shadow:0 0 12px var(--acid)}
+  .jnum{font-family:var(--mono);font-size:12px;letter-spacing:.18em;color:#000}
+  .jlabel{font-size:21px;font-weight:700;text-transform:uppercase;letter-spacing:-.01em;line-height:1;color:#000}
+  .jhost{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:rgba(0,0,0,.62)}
+  .jstep:hover .jnum,.jstep:hover .jlabel{color:var(--acid)}
+  .jstep:hover .jhost{color:rgba(180,255,0,.75)}
+  .cta-secondary{margin-top:46px;display:flex;gap:26px;justify-content:center;flex-wrap:wrap}
+  .cta-secondary a{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#000;border-bottom:1px solid rgba(0,0,0,.4);padding-bottom:3px;transition:opacity .2s}
+  .cta-secondary a:hover{opacity:.6}
+  @media(max-width:720px){
+    .journey{max-width:420px;gap:16px}
+    .journey-curve{display:none}
+    .jstep{width:100%;align-self:stretch;height:auto;padding:20px 22px}
+    .jstep::after{display:none}
+  }
 
   /* FOOTER */
   footer{padding:60px 0 44px;border:none}
@@ -323,16 +346,49 @@
   </div>
 </section>
 
-<!-- CTA -->
+<!-- CTA / JOURNEY -->
 <section id="join" class="cta-band">
   <div class="wrap">
     <h2>Come build<br>biology with us.</h2>
-    <div class="hero-cta">
-      <a class="btn" href="https://biopunk.house" target="_blank" rel="noopener">Apply to a house</a>
-      <a class="btn" href="https://primordiagrants.com/" target="_blank" rel="noopener">Apply for a grant</a>
-      <a class="btn" href="https://biopunkvc.com" target="_blank" rel="noopener">For investors</a>
-      <a class="btn" href="https://discord.gg/8wtYYtpHNN" target="_blank" rel="noopener">Join the Discord</a>
-      <a class="btn" href="https://luma.com/biopunk" target="_blank" rel="noopener">Upcoming events</a>
+    <p class="cta-sub">Follow the path — every step is a door.</p>
+    <div class="journey">
+      <svg class="journey-curve" viewBox="0 0 100 1120" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M42 48 C42 112 58 112 58 176 C58 240 42 240 42 304 C42 368 58 368 58 432 C58 496 42 496 42 560 C42 624 58 624 58 688 C58 752 42 752 42 816 C42 880 58 880 58 944 C58 1008 42 1008 42 1072"
+              fill="none" stroke="#000" stroke-width="2" stroke-dasharray="1 7" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+      </svg>
+
+      <a class="jstep left" href="https://polygenik.com/" target="_blank" rel="noopener">
+        <span class="jnum">01</span><span class="jlabel">Get Inspired</span><span class="jhost">polygenik.com ↗</span>
+      </a>
+      <a class="jstep right" href="https://cellsius.org/" target="_blank" rel="noopener">
+        <span class="jnum">02</span><span class="jlabel">Take a Class</span><span class="jhost">cellsius.org ↗</span>
+      </a>
+      <a class="jstep left" href="https://crablaboratory.com/" target="_blank" rel="noopener">
+        <span class="jnum">03</span><span class="jlabel">Buy Equipment</span><span class="jhost">crablaboratory.com ↗</span>
+      </a>
+      <a class="jstep right" href="https://primordiagrants.com/" target="_blank" rel="noopener">
+        <span class="jnum">04</span><span class="jlabel">Apply for a Grant</span><span class="jhost">primordiagrants.com ↗</span>
+      </a>
+      <a class="jstep left" href="https://global-biolab-atlas.netlify.app/" target="_blank" rel="noopener">
+        <span class="jnum">05</span><span class="jlabel">Join a Lab</span><span class="jhost">global-biolab-atlas.netlify.app ↗</span>
+      </a>
+      <a class="jstep right" href="https://biopunkvc.com/" target="_blank" rel="noopener">
+        <span class="jnum">06</span><span class="jlabel">Secure Money</span><span class="jhost">biopunkvc.com ↗</span>
+      </a>
+      <a class="jstep left" href="https://fathomm.org/" target="_blank" rel="noopener">
+        <span class="jnum">07</span><span class="jlabel">Find a Clinic</span><span class="jhost">fathomm.org ↗</span>
+      </a>
+      <a class="jstep right" href="https://templelab.org/" target="_blank" rel="noopener">
+        <span class="jnum">08</span><span class="jlabel">Run a Test</span><span class="jhost">templelab.org ↗</span>
+      </a>
+      <a class="jstep left" href="https://biologicalfrontierfoundation.org/" target="_blank" rel="noopener">
+        <span class="jnum">09</span><span class="jlabel">Protect Yourself</span><span class="jhost">biologicalfrontierfoundation.org ↗</span>
+      </a>
+    </div>
+
+    <div class="cta-secondary">
+      <a href="https://discord.gg/8wtYYtpHNN" target="_blank" rel="noopener">Join the Discord ↗</a>
+      <a href="https://luma.com/biopunk" target="_blank" rel="noopener">Upcoming events ↗</a>
     </div>
   </div>
 </section>
