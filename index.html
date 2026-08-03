@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>BIOPUNK — From play to the clinic</title>
-<meta name="description" content="biopunk.community maps the whole Biopunk movement as one continuous process — eleven stages from play and learning to clinic, testing and regulation. Polygenik, Cellsius, Crab Lab, the Biohackathon, Primordia Grants, Biopunk Lab, Biopunk House, Biopunk VC, Fathomm, Temple Lab, and the Biological Frontier Foundation — plus the Global Biolab Atlas." />
+<meta name="description" content="biopunk.community maps the whole Biopunk movement as one process — eleven stages from play and learning to clinic, testing and regulation. Polygenik, Cellsius, Crab Lab, the Biohackathon, Primordia Grants, Biopunk Lab, Biopunk House, Biopunk VC, Fathomm, Temple Lab, and the Biological Frontier Foundation — plus the Global Biolab Atlas." />
 <meta property="og:title" content="BIOPUNK — From play to the clinic" />
 <meta property="og:description" content="The open biotech movement, mapped end to end — eleven stages from play to regulation." />
 <meta property="og:type" content="website" />
@@ -71,31 +71,22 @@
   .sec-label{display:flex;align-items:center;gap:14px;color:var(--muted);margin-bottom:26px}
   .sec-label::before{content:"";width:40px;height:1px;background:var(--acid)}
 
-  /* PIPELINE */
-  .pipeline{margin-top:20px}
-  .stage{display:grid;grid-template-columns:290px 1fr;gap:44px;padding:30px 0;border-top:1px solid var(--line)}
-  @media(max-width:840px){.stage{grid-template-columns:1fr;gap:20px;padding:28px 0}}
-  .stage-label{position:relative;padding-left:30px}
-  .stage-label::before{content:"";position:absolute;left:3px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--acid);box-shadow:0 0 12px var(--acid)}
-  .stage:not(:last-child) .stage-label::after{content:"";position:absolute;left:8px;top:24px;bottom:-52px;width:1px;background:linear-gradient(var(--acid),var(--line));opacity:.4}
-  @media(max-width:840px){.stage-label::after{display:none}}
-  .stage-num{font-family:var(--mono);font-size:12px;letter-spacing:.22em;color:var(--acid)}
-  .stage-label h3{font-size:clamp(22px,2.6vw,30px);text-transform:uppercase;letter-spacing:-.01em;line-height:1.04;margin:10px 0 10px}
-  .stage-label p{color:var(--muted);font-size:14px;line-height:1.6;max-width:250px}
-  .stage-cards{display:flex;flex-wrap:wrap;gap:16px;align-content:flex-start}
-  .dcard{position:relative;flex:1 1 250px;max-width:400px;border:1px solid var(--line);background:var(--bg-2);padding:24px 24px 20px 30px;display:flex;flex-direction:column;min-height:176px;transition:transform .2s,border-color .2s}
-  @media(max-width:840px){.dcard{max-width:none}}
-  .dcard:hover{transform:translateY(-4px);border-color:var(--c)}
-  .dcard .bar{position:absolute;left:0;top:0;width:4px;height:100%;background:var(--c)}
-  .dcard .cat{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--c);display:flex;align-items:center;gap:8px}
-  .dcard .cat::before{content:"";width:7px;height:7px;background:currentColor;border-radius:50%}
-  .dcard h3{font-size:22px;text-transform:uppercase;letter-spacing:-.01em;margin:12px 0 4px;line-height:1.05}
-  .dcard .dom{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--muted);margin-bottom:13px;word-break:break-all}
-  .dcard p{color:#bdbcb2;font-size:14px;line-height:1.55;flex:1}
-  .dcard .go{margin-top:16px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:8px;transition:color .2s}
-  .dcard:hover .go{color:var(--c)}
-  .dcard .go .arr{transition:transform .2s}
-  .dcard:hover .go .arr{transform:translateX(5px)}
+  /* PATH GRID */
+  .pathgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
+  @media(max-width:900px){.pathgrid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.pathgrid{grid-template-columns:1fr}}
+  .pcard{position:relative;border:1px solid var(--line);background:var(--bg-2);padding:26px 24px 22px 30px;display:flex;flex-direction:column;min-height:236px;transition:transform .2s,border-color .2s}
+  .pcard:hover{transform:translateY(-4px);border-color:var(--c)}
+  .pcard .bar{position:absolute;left:0;top:0;width:4px;height:100%;background:var(--c)}
+  .pcard .phase{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);display:flex;align-items:center;gap:9px}
+  .pcard .phase::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor}
+  .pcard h3{font-size:21px;text-transform:uppercase;letter-spacing:-.01em;margin:13px 0 3px;line-height:1.06}
+  .pcard .dom{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--muted);margin-bottom:13px;word-break:break-all}
+  .pcard p{color:#bdbcb2;font-size:14px;line-height:1.55;flex:1}
+  .pcard .go{margin-top:16px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:8px;transition:color .2s}
+  .pcard:hover .go{color:var(--c)}
+  .pcard .go .arr{transition:transform .2s}
+  .pcard:hover .go .arr{transform:translateX(5px)}
   .c-acid{--c:var(--acid)} .c-yellow{--c:var(--yellow)} .c-pink{--c:var(--pink)} .c-bone{--c:var(--bone)} .c-cyan{--c:var(--cyan)}
 
   /* MOVEMENT (compact) */
@@ -176,7 +167,7 @@
   </div>
 </header>
 
-<!-- THE PATH / PIPELINE -->
+<!-- THE PATH / GRID -->
 <section id="path">
   <div class="wrap">
     <div class="sec-head">
@@ -184,216 +175,106 @@
       <p>The movement, mapped as one continuous process — eleven stages from play and learning through building and financing to clinic, testing, and regulation. Every stop is a project you can walk into.</p>
     </div>
 
-    <div class="pipeline">
+    <div class="pathgrid">
 
-      <!-- 01 PLAY -->
-      <div class="stage" id="stage-01">
-        <div class="stage-label">
-          <div class="stage-num">Stage 01</div>
-          <h3>Play</h3>
-          <p>Spark curiosity. Biology as art — the playful, provocative on-ramp to the movement.</p>
-        </div>
-        <div class="stage-cards">
-          <a class="dcard c-pink" href="https://polygenik.com/" target="_blank" rel="noopener">
-            <div class="bar"></div>
-            <div class="cat">Art Collective</div>
-            <h3>Polygenik</h3>
-            <div class="dom">polygenik.com</div>
-            <p>A biotech art collective — staging the experiments culture is too polite to run, then inviting you to the after-party.</p>
-            <span class="go">Visit <span class="arr">→</span></span>
-          </a>
-        </div>
-      </div>
+      <a class="pcard c-pink" id="stage-01" href="https://polygenik.com/" target="_blank" rel="noopener">
+        <span class="bar"></span>
+        <span class="phase">01 · Play</span>
+        <h3>Polygenik</h3>
+        <div class="dom">polygenik.com</div>
+        <p>A biotech art collective — staging the experiments culture is too polite to run, then inviting you to the after-party.</p>
+        <span class="go">Visit <span class="arr">→</span></span>
+      </a>
 
-      <!-- 02 LEARN -->
-      <div class="stage" id="stage-02">
-        <div class="stage-label">
-          <div class="stage-num">Stage 02</div>
-          <h3>Learn</h3>
-          <p>Get hands-on. Take a class, run your first real experiment.</p>
-        </div>
-        <div class="stage-cards">
-          <a class="dcard c-acid" href="http://cellsius.org/" target="_blank" rel="noopener">
-            <div class="bar"></div>
-            <div class="cat">Community Lab</div>
-            <h3>Cellsius</h3>
-            <div class="dom">cellsius.org</div>
-            <p>The SF community bio lab the movement grew from — project-based learning, classes, and open experimentation across synbio, tissue engineering, DNA sequencing and more.</p>
-            <span class="go">Visit <span class="arr">→</span></span>
-          </a>
-        </div>
-      </div>
+      <a class="pcard c-acid" id="stage-02" href="http://cellsius.org/" target="_blank" rel="noopener">
+        <span class="bar"></span>
+        <span class="phase">02 · Learn</span>
+        <h3>Cellsius</h3>
+        <div class="dom">cellsius.org</div>
+        <p>The SF community bio lab the movement grew from — project-based learning, classes, and open experimentation across synbio, tissue engineering, DNA sequencing and more.</p>
+        <span class="go">Visit <span class="arr">→</span></span>
+      </a>
 
-      <!-- 03 EQUIP -->
-      <div class="stage" id="stage-03">
-        <div class="stage-label">
-          <div class="stage-num">Stage 03</div>
-          <h3>Equip</h3>
-          <p>Get a real bench — anywhere. Open, buildable lab infrastructure.</p>
-        </div>
-        <div class="stage-cards">
-          <a class="dcard c-cyan" href="http://crablaboratory.com/" target="_blank" rel="noopener">
-            <div class="bar"></div>
-            <div class="cat">Open Hardware</div>
-            <h3>Crab Lab</h3>
-            <div class="dom">crablaboratory.com</div>
-            <p>Open-source, modular shipping-container laboratories built to deploy anywhere. Blueprints and protocols are fully open, so any community can stand up a lab from local materials.</p>
-            <span class="go">Visit <span class="arr">→</span></span>
-          </a>
-        </div>
-      </div>
+      <a class="pcard c-cyan" id="stage-03" href="http://crablaboratory.com/" target="_blank" rel="noopener">
+        <span class="bar"></span>
+        <span class="phase">03 · Equip</span>
+        <h3>Crab Lab</h3>
+        <div class="dom">crablaboratory.com</div>
+        <p>Open-source, modular shipping-container laboratories built to deploy anywhere. Blueprints and protocols are fully open, so any community can stand up a lab from local materials.</p>
+        <span class="go">Visit <span class="arr">→</span></span>
+      </a>
 
-      <!-- 04 PROTOTYPE -->
-      <div class="stage" id="stage-04">
-        <div class="stage-label">
-          <div class="stage-num">Stage 04</div>
-          <h3>Prototype</h3>
-          <p>Turn a hunch into a working prototype — fast, with people who get it.</p>
-        </div>
-        <div class="stage-cards">
-          <a class="dcard c-yellow" href="https://biopunk-hackathon.vercel.app/" target="_blank" rel="noopener">
-            <div class="bar"></div>
-            <div class="cat">Events</div>
-            <h3>Biohackathon</h3>
-            <div class="dom">biopunk-hackathon.vercel.app</div>
-            <p>A sprint of rebellious science at the crossroads of synthetic biology, DeSci, and open science. Prototype frontier biotech — DIY diagnostics, living art, lab automation — in days.</p>
-            <span class="go">Visit <span class="arr">→</span></span>
-          </a>
-        </div>
-      </div>
+      <a class="pcard c-yellow" id="stage-04" href="https://biopunk-hackathon.vercel.app/" target="_blank" rel="noopener">
+        <span class="bar"></span>
+        <span class="phase">04 · Prototype</span>
+        <h3>Biohackathon</h3>
+        <div class="dom">biopunk-hackathon.vercel.app</div>
+        <p>A sprint of rebellious science at the crossroads of synthetic biology, DeSci, and open science. Prototype frontier biotech — DIY diagnostics, living art, lab automation — in days.</p>
+        <span class="go">Visit <span class="arr">→</span></span>
+      </a>
 
-      <!-- 05 GRANTS -->
-      <div class="stage" id="stage-05">
-        <div class="stage-label">
-          <div class="stage-num">Stage 05</div>
-          <h3>Grants</h3>
-          <p>Fund the first experiment with fast, non-dilutive money.</p>
-        </div>
-        <div class="stage-cards">
-          <a class="dcard c-acid" href="https://primordiagrants.com/" target="_blank" rel="noopener">
-            <div class="bar"></div>
-            <div class="cat">Microgrants</div>
-            <h3>Primordia Grants</h3>
-            <div class="dom">primordiagrants.com</div>
-            <p>Fast microgrants — up to $3,000 — for early-stage biology experiments in community labs. No institution or credentials required; grantees share their work in the open.</p>
-            <span class="go">Visit <span class="arr">→</span></span>
-          </a>
-        </div>
-      </div>
+      <a class="pcard c-acid" id="stage-05" href="https://primordiagrants.com/" target="_blank" rel="noopener">
+        <span class="bar"></span>
+        <span class="phase">05 · Grants</span>
+        <h3>Primordia Grants</h3>
+        <div class="dom">primordiagrants.com</div>
+        <p>Fast microgrants — up to $3,000 — for early-stage biology experiments in community labs. No institution or credentials required; grantees share their work in the open.</p>
+        <span class="go">Visit <span class="arr">→</span></span>
+      </a>
 
-      <!-- 06 INCUBATE -->
-      <div class="stage" id="stage-06">
-        <div class="stage-label">
-          <div class="stage-num">Stage 06</div>
-          <h3>Incubate</h3>
-          <p>Run real experiments in a shared, open-access wet lab.</p>
-        </div>
-        <div class="stage-cards">
-          <a class="dcard c-pink" href="https://biopunklab.com" target="_blank" rel="noopener">
-            <div class="bar"></div>
-            <div class="cat">Open-Access Lab</div>
-            <h3>Biopunk Lab</h3>
-            <div class="dom">biopunklab.com</div>
-            <p>The world's largest open-access biolab. Shared BSL-2 wet-lab infrastructure, tools, and training to incubate your project — real experiments from day one, no million-dollar setup.</p>
-            <span class="go">Visit <span class="arr">→</span></span>
-          </a>
-        </div>
-      </div>
+      <a class="pcard c-pink" id="stage-06" href="https://biopunklab.com" target="_blank" rel="noopener">
+        <span class="bar"></span>
+        <span class="phase">06 · Incubate</span>
+        <h3>Biopunk Lab</h3>
+        <div class="dom">biopunklab.com</div>
+        <p>The world's largest open-access biolab. Shared BSL-2 wet-lab infrastructure, tools, and training to incubate your project — real experiments from day one, no million-dollar setup.</p>
+        <span class="go">Visit <span class="arr">→</span></span>
+      </a>
 
-      <!-- 07 ACCELERATE -->
-      <div class="stage" id="stage-07">
-        <div class="stage-label">
-          <div class="stage-num">Stage 07</div>
-          <h3>Accelerate</h3>
-          <p>Go full-time. Live and build with a cohort at speed.</p>
-        </div>
-        <div class="stage-cards">
-          <a class="dcard c-yellow" href="https://biopunk.house" target="_blank" rel="noopener">
-            <div class="bar"></div>
-            <div class="cat">Residency</div>
-            <h3>Biopunk House</h3>
-            <div class="dom">biopunk.house</div>
-            <p>A live-in residency that accelerates founders — 12–15 builders per cohort living and building side by side for a 3–4 month sprint, with mentors and KOLs on tap.</p>
-            <span class="go">Visit <span class="arr">→</span></span>
-          </a>
-        </div>
-      </div>
+      <a class="pcard c-yellow" id="stage-07" href="https://biopunk.house" target="_blank" rel="noopener">
+        <span class="bar"></span>
+        <span class="phase">07 · Accelerate</span>
+        <h3>Biopunk House</h3>
+        <div class="dom">biopunk.house</div>
+        <p>A live-in residency that accelerates founders — 12–15 builders per cohort living and building side by side for a 3–4 month sprint, with mentors and KOLs on tap.</p>
+        <span class="go">Visit <span class="arr">→</span></span>
+      </a>
 
-      <!-- 08 FINANCE -->
-      <div class="stage" id="stage-08">
-        <div class="stage-label">
-          <div class="stage-num">Stage 08</div>
-          <h3>Finance</h3>
-          <p>Raise the capital to scale the winners into companies.</p>
-        </div>
-        <div class="stage-cards">
-          <a class="dcard c-bone" href="https://biopunkvc.com" target="_blank" rel="noopener">
-            <div class="bar"></div>
-            <div class="cat">Capital</div>
-            <h3>Biopunk VC</h3>
-            <div class="dom">biopunkvc.com</div>
-            <p>A $25M pre-seed residency fund. A founder-friendly first check and aggressive follow-on to finance the best companies as they incorporate, hire, and scale.</p>
-            <span class="go">Visit <span class="arr">→</span></span>
-          </a>
-        </div>
-      </div>
+      <a class="pcard c-bone" id="stage-08" href="https://biopunkvc.com" target="_blank" rel="noopener">
+        <span class="bar"></span>
+        <span class="phase">08 · Finance</span>
+        <h3>Biopunk VC</h3>
+        <div class="dom">biopunkvc.com</div>
+        <p>A $25M pre-seed residency fund. A founder-friendly first check and aggressive follow-on to finance the best companies as they incorporate, hire, and scale.</p>
+        <span class="go">Visit <span class="arr">→</span></span>
+      </a>
 
-      <!-- 09 CLINIC -->
-      <div class="stage" id="stage-09">
-        <div class="stage-label">
-          <div class="stage-num">Stage 09</div>
-          <h3>Clinic</h3>
-          <p>Carry the science toward patients and real-world application.</p>
-        </div>
-        <div class="stage-cards">
-          <a class="dcard c-cyan" href="https://fathomm.org/" target="_blank" rel="noopener">
-            <div class="bar"></div>
-            <div class="cat">Clinical</div>
-            <h3>Fathomm</h3>
-            <div class="dom">fathomm.org</div>
-            <p>Where a validated biopunk project makes the leap from the bench toward patients and the clinic.</p>
-            <span class="go">Visit <span class="arr">→</span></span>
-          </a>
-        </div>
-      </div>
+      <a class="pcard c-cyan" id="stage-09" href="https://fathomm.org/" target="_blank" rel="noopener">
+        <span class="bar"></span>
+        <span class="phase">09 · Clinic</span>
+        <h3>Fathomm</h3>
+        <div class="dom">fathomm.org</div>
+        <p>Medical tourism for the frontier — a directory linking patients to clinics all over the world to reach treatments where they're available.</p>
+        <span class="go">Visit <span class="arr">→</span></span>
+      </a>
 
-      <!-- 10 TEST -->
-      <div class="stage" id="stage-10">
-        <div class="stage-label">
-          <div class="stage-num">Stage 10</div>
-          <h3>Test</h3>
-          <p>Validate rigorously — independent analytical testing.</p>
-        </div>
-        <div class="stage-cards">
-          <a class="dcard c-pink" href="https://templelab.org/" target="_blank" rel="noopener">
-            <div class="bar"></div>
-            <div class="cat">Analytical</div>
-            <h3>Temple Lab</h3>
-            <div class="dom">templelab.org</div>
-            <p>Analytical chemistry with harm reduction as its central sacrament — HPLC-anchored testing and full certificates of analysis for peptides, supplements, and research groups.</p>
-            <span class="go">Visit <span class="arr">→</span></span>
-          </a>
-        </div>
-      </div>
+      <a class="pcard c-pink" id="stage-10" href="https://templelab.org/" target="_blank" rel="noopener">
+        <span class="bar"></span>
+        <span class="phase">10 · Test</span>
+        <h3>Temple Lab</h3>
+        <div class="dom">templelab.org</div>
+        <p>Analytical chemistry with harm reduction as its central sacrament — HPLC-anchored testing and full certificates of analysis for peptides, supplements, and research groups.</p>
+        <span class="go">Visit <span class="arr">→</span></span>
+      </a>
 
-      <!-- 11 REGULATE -->
-      <div class="stage" id="stage-11">
-        <div class="stage-label">
-          <div class="stage-num">Stage 11</div>
-          <h3>Regulate</h3>
-          <p>Governance, compliance, and responsible-science guidance.</p>
-        </div>
-        <div class="stage-cards">
-          <a class="dcard c-acid" href="https://biologicalfrontierfoundation.org/" target="_blank" rel="noopener">
-            <div class="bar"></div>
-            <div class="cat">Nonprofit</div>
-            <h3>Biological Frontier Foundation</h3>
-            <div class="dom">biologicalfrontierfoundation.org</div>
-            <p>The nonprofit backbone — the governance and guidance that keep the whole pipeline open, safe, and legitimate.</p>
-            <span class="go">Visit <span class="arr">→</span></span>
-          </a>
-        </div>
-      </div>
+      <a class="pcard c-acid" id="stage-11" href="https://biologicalfrontierfoundation.org/" target="_blank" rel="noopener">
+        <span class="bar"></span>
+        <span class="phase">11 · Regulate</span>
+        <h3>Biological Frontier Foundation</h3>
+        <div class="dom">biologicalfrontierfoundation.org</div>
+        <p>The nonprofit defending biological civil liberties — your right to study, test, and change your own biology.</p>
+        <span class="go">Visit <span class="arr">→</span></span>
+      </a>
 
     </div>
   </div>
