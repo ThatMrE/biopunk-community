@@ -138,6 +138,31 @@ durable disk, not a container layer), and back the file up with `sqlite3 .backup
 `docker build -t biopunk-news news/ && docker run -p 8080:8080 -v bpnews:/data biopunk-news`
 also works — see the `Dockerfile`.
 
+### Netlify (review deploys)
+
+`netlify.toml` and `netlify/functions/server.mjs` adapt the app to Netlify: the
+`node:http` handler is wrapped in a web-standard Request/Response shim, static
+assets are served from the CDN, and everything else is rendered by the function.
+
+Connect the repo in the Netlify UI with **base directory `news`** — the config
+lives in this folder, not at the repo root, so the root landing-page site keeps
+its own settings. Or deploy from a checkout:
+
+```bash
+cd news && npx netlify deploy --prod
+```
+
+Set `BIOPUNK_SECRET` in the project's environment variables so CSRF tokens
+survive a restart.
+
+**Serverless caveat:** function containers have an ephemeral filesystem, so the
+database lives in `/tmp` and is re-seeded (about 2 seconds) whenever a cold
+container starts. Submissions and votes made on a review deploy disappear when
+that container is recycled, and two concurrent containers do not share state.
+Pages served this way show a footer notice saying so. It is fine for reviewing
+the design and the flows; for anything real, run the single-process deployment
+above against a durable disk.
+
 **Note on the rest of this repo:** the root `index.html` is the static biopunk.community landing
 page served by GitHub Pages and is untouched by this app. Biopunk News needs a Node host, so it
 cannot run on Pages. Once it has a home (`news.biopunk.community` is the obvious one), the
