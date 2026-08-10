@@ -154,7 +154,10 @@ function seed({ reset = false } = {}) {
   const lurkers = LURKER_STEMS.flatMap((stem, i) =>
     [1, 2, 3, 4, 5, 6].map((n) => `${stem}${(i + n * 7) % 97}`),
   ).slice(0, 72);
-  for (const id of lurkers) db.createUser({ id, passwordHash: hashPassword(`${id}-demo-pass`) });
+  // One shared hash for the quiet accounts: scrypt is deliberately slow, and
+  // hashing 72 throwaway logins individually makes seeding take seconds.
+  const lurkerHash = hashPassword('lurker-demo-pass');
+  for (const id of lurkers) db.createUser({ id, passwordHash: lurkerHash });
 
   const handles = [...USERS.map(([id]) => id), 'curator', ...lurkers];
 
@@ -190,7 +193,8 @@ function seed({ reset = false } = {}) {
 
   const stats = db.siteStats();
   console.log(`Seeded ${stats.stories} submissions, ${stats.comments} comments, ${stats.votes} votes, ${stats.users} handles.`);
-  console.log('Demo logins: any handle above with password "<handle>-demo-pass" (e.g. helix_witch / helix_witch-demo-pass).');
+  console.log('Demo logins: any named handle with password "<handle>-demo-pass" (e.g. helix_witch / helix_witch-demo-pass).');
+  console.log('The quiet vote-only accounts all share the passphrase "lurker-demo-pass".');
   console.log('All seed content is fictional sample data.');
 }
 

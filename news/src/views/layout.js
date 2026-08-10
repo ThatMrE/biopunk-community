@@ -99,6 +99,11 @@ function tickerBar(entries) {
   return `<div class="ticker" aria-hidden="true"><div class="run">${run}${run}</div></div>`;
 }
 
+/** Review deploys run on an ephemeral disk; say so rather than let it surprise. */
+const DEMO_NOTICE = process.env.BIOPUNK_DEMO
+  ? '<div class="tagline">Demo deploy &mdash; sample content, and the database resets when the server sleeps.</div>'
+  : '';
+
 function footer() {
   return `<footer class="foot">
   <div class="wrap">
@@ -110,6 +115,7 @@ function footer() {
     <a href="https://biopunk.community">biopunk.community</a>
     <a href="https://discord.gg/8wtYYtpHNN" rel="noopener" target="_blank">Discord</a>
     <div class="tagline">${esc(TAGLINE)}</div>
+    ${DEMO_NOTICE}
   </div>
 </footer>`;
 }
