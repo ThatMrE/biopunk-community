@@ -9,5 +9,5 @@ Single self-contained `index.html`. Deployable to GitHub Pages, Netlify, Vercel,
 ## Biopunk News
 
 The community-ranked biotech feed lives in its own repo: **[ThatMrE/Biopunk-News](https://github.com/ThatMrE/Biopunk-News)**.
-It used to sit in `news/` here; it moved out because it is a Node server with its own database and
+It used to sit in `news/` here. It moved out because it is a Node server with its own database and
 deploy, not part of this static page. Deployed at [biopunknews.netlify.app](https://biopunknews.netlify.app).
