@@ -1,0 +1,30 @@
+name: Checks
+
+# Guards the two things that actually break a static site: a local link or
+# asset that stops resolving, and prose drifting back out of Simplified
+# Technical English. Both checks are stdlib Python, no network, no deps.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  links:
+    name: Local links resolve
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 .github/checks/check_links.py
+
+  prose:
+    name: Prose stays in STE
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Budget is a ratchet set just above the score at the time this landed.
+      # Lower it as prose improves; never raise it to make a red build green.
+      - run: python3 .github/checks/ste_check.py --fail-over 0.5
